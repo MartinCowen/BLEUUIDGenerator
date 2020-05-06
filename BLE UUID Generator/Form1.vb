@@ -4,15 +4,19 @@
         Dim s As String
         Dim nl As String = Environment.NewLine
 
-        s = "// TODO: add name of your UUID in the three lines below." & nl
-        s &= "// UUID : " & g & nl & nl
-        s &= "#define _SERVICE_BASE_UUID    " & SplitReverseGUID(g) & nl
-        s &= "#define _SERVICE_UUD          " & "0x" & g.Substring(4, 4) & nl
+        s = "// TODO: add name of your UUID in the three lines below." & nl ' inform user that name needs to be added
+        s &= "// UUID : " & g & nl & nl 'the UUID in "normal" format for the C comments
+        s &= "#define _SERVICE_BASE_UUID    " & SplitReverseGUID(g) & nl 'the split reversed format required by Nordic SDK
+        s &= "#define _SERVICE_UUD          " & "0x" & g.Substring(4, 4) & nl 'last 16 bits of first 32 bits of UUID
 
         txtOutput.Text = s
 
     End Sub
 
+    ''' <summary>
+    ''' Generates a GUID using Microsoft API which does not clash with BT SIG reserved UUIDs
+    ''' </summary>
+    ''' <returns>GUID string with dashes in upper case</returns>
     Private Function GenerateGUIDCheckNotReserved() As String
         Dim g As Guid
 
@@ -24,13 +28,11 @@
     End Function
 
     ''' <summary>
-    ''' 
+    ''' Takes a GUID in format 03B80E5A-EDE8-4B33-A751-6CE34EC4C700 and produces little endian hex formatted comma separated list with containing brackets
     ''' </summary>
-    ''' <param name="g"></param>
-    ''' <returns></returns>
+    ''' <param name="g">Guid in string format, can include dashes</param>
+    ''' <returns>Little endian hex format comma separated list with containing brackets</returns>
     Private Function SplitReverseGUID(g As String) As String
-        'takes g GUID in format 03B80E5A-EDE8-4B33-A751-6CE34EC4C700
-        'produces little endian hex formatted comma seperated list with containing brackets
 
         'first get rid of the dashes so that it is one long string that we can run through
         Dim gs As String = g.Replace("-", "")
@@ -53,7 +55,6 @@
     End Function
 
     Private Sub txtOutput_TextChanged(sender As Object, e As EventArgs) Handles txtOutput.TextChanged
-
         btnCopyText.Enabled = Not (txtOutput.Text = String.Empty)
     End Sub
 
