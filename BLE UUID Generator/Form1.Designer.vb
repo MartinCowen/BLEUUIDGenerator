@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.btnGenerate = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtOutput = New System.Windows.Forms.TextBox()
         Me.btnCopyText = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -36,18 +36,20 @@ Partial Class Form1
         Me.btnGenerate.Text = "Generate UUID"
         Me.btnGenerate.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'txtOutput
         '
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TextBox1.Location = New System.Drawing.Point(0, 54)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(800, 339)
-        Me.TextBox1.TabIndex = 1
+        Me.txtOutput.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.txtOutput.Font = New System.Drawing.Font("Lucida Console", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtOutput.Location = New System.Drawing.Point(0, 54)
+        Me.txtOutput.Multiline = True
+        Me.txtOutput.Name = "txtOutput"
+        Me.txtOutput.Size = New System.Drawing.Size(1005, 339)
+        Me.txtOutput.TabIndex = 1
         '
         'btnCopyText
         '
-        Me.btnCopyText.Location = New System.Drawing.Point(663, 13)
+        Me.btnCopyText.Enabled = False
+        Me.btnCopyText.Location = New System.Drawing.Point(868, 12)
         Me.btnCopyText.Name = "btnCopyText"
         Me.btnCopyText.Size = New System.Drawing.Size(125, 35)
         Me.btnCopyText.TabIndex = 2
@@ -58,9 +60,9 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 393)
+        Me.ClientSize = New System.Drawing.Size(1005, 393)
         Me.Controls.Add(Me.btnCopyText)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtOutput)
         Me.Controls.Add(Me.btnGenerate)
         Me.Name = "Form1"
         Me.Text = "BLE UUID Generator"
@@ -70,6 +72,6 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents btnGenerate As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtOutput As TextBox
     Friend WithEvents btnCopyText As Button
 End Class
