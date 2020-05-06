@@ -22,12 +22,18 @@ BLE UUID Generator
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:BLE_UUID_Generator.Form1.GenerateGUIDCheckNotReserved">
+ <summary>
+ Generates a GUID using Microsoft API which does not clash with BT SIG reserved UUIDs
+ </summary>
+ <returns>GUID string with dashes in upper case</returns>
+</member>
 <member name="M:BLE_UUID_Generator.Form1.SplitReverseGUID(System.String)">
  <summary>
- 
+ Takes a GUID in format 03B80E5A-EDE8-4B33-A751-6CE34EC4C700 and produces little endian hex formatted comma separated list with containing brackets
  </summary>
- <param name="g"></param>
- <returns></returns>
+ <param name="g">Guid in string format, can include dashes</param>
+ <returns>Little endian hex format comma separated list with containing brackets</returns>
 </member>
 </members>
 </doc>

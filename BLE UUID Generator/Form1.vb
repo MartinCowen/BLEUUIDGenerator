@@ -1,8 +1,15 @@
-﻿Public Class Form1
+﻿Imports System.Runtime.Remoting.Services
+
+Public Class Form1
     Dim WithEvents tmrStartup As New Timer
 
     Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
         Dim g As String = GenerateGUIDCheckNotReserved()
+        DisplayUUID(g)
+
+    End Sub
+    Private Sub DisplayUUID(g As String)
+
         Dim s As String
         Dim nl As String = Environment.NewLine
 
@@ -12,8 +19,8 @@
         s &= "#define _SERVICE_UUD          " & "0x" & g.Substring(4, 4) & nl 'last 16 bits of first 32 bits of UUID
 
         txtOutput.Text = s
-
     End Sub
+
 
     ''' <summary>
     ''' Generates a GUID using Microsoft API which does not clash with BT SIG reserved UUIDs
@@ -75,5 +82,21 @@
     Private Sub tmrStartup_Tick(sender As Object, e As EventArgs) Handles tmrStartup.Tick
         tmrStartup.Stop() 'run once
         btnGenerate.PerformClick()
+    End Sub
+
+    Private Sub btnEnterUUID_Click(sender As Object, e As EventArgs) Handles btnEnterUUID.Click
+        DisplayUUID(txtUUID.Text)
+    End Sub
+
+    Private Sub txtUUID_TextChanged(sender As Object, e As EventArgs) Handles txtUUID.TextChanged
+        btnEnterUUID.Enabled = Guid.TryParse(txtUUID.Text, New Guid)
+    End Sub
+
+    Private Sub txtUUID_KeyDown(sender As Object, e As KeyEventArgs) Handles txtUUID.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If Guid.TryParse(txtUUID.Text, New Guid) Then
+                DisplayUUID(txtUUID.Text)
+            End If
+        End If
     End Sub
 End Class

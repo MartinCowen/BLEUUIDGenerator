@@ -25,6 +25,9 @@ Partial Class Form1
         Me.btnGenerate = New System.Windows.Forms.Button()
         Me.txtOutput = New System.Windows.Forms.TextBox()
         Me.btnCopyText = New System.Windows.Forms.Button()
+        Me.txtUUID = New System.Windows.Forms.TextBox()
+        Me.btnEnterUUID = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnGenerate
@@ -56,11 +59,40 @@ Partial Class Form1
         Me.btnCopyText.Text = "&Copy"
         Me.btnCopyText.UseVisualStyleBackColor = True
         '
+        'txtUUID
+        '
+        Me.txtUUID.Location = New System.Drawing.Point(315, 20)
+        Me.txtUUID.Name = "txtUUID"
+        Me.txtUUID.Size = New System.Drawing.Size(296, 20)
+        Me.txtUUID.TabIndex = 3
+        '
+        'btnEnterUUID
+        '
+        Me.btnEnterUUID.Enabled = False
+        Me.btnEnterUUID.Location = New System.Drawing.Point(617, 19)
+        Me.btnEnterUUID.Name = "btnEnterUUID"
+        Me.btnEnterUUID.Size = New System.Drawing.Size(75, 23)
+        Me.btnEnterUUID.TabIndex = 4
+        Me.btnEnterUUID.Text = "Enter"
+        Me.btnEnterUUID.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(312, 4)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(287, 13)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Use formatter to split your own UUID with or without dashes"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1005, 191)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.btnEnterUUID)
+        Me.Controls.Add(Me.txtUUID)
         Me.Controls.Add(Me.btnCopyText)
         Me.Controls.Add(Me.txtOutput)
         Me.Controls.Add(Me.btnGenerate)
@@ -74,4 +106,7 @@ Partial Class Form1
     Friend WithEvents btnGenerate As Button
     Friend WithEvents txtOutput As TextBox
     Friend WithEvents btnCopyText As Button
+    Friend WithEvents txtUUID As TextBox
+    Friend WithEvents btnEnterUUID As Button
+    Friend WithEvents Label1 As Label
 End Class
