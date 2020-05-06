@@ -1,4 +1,6 @@
 ﻿Public Class Form1
+    Dim WithEvents tmrStartup As New Timer
+
     Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
         Dim g As String = GenerateGUIDCheckNotReserved()
         Dim s As String
@@ -20,9 +22,10 @@
     Private Function GenerateGUIDCheckNotReserved() As String
         Dim g As Guid
 
+        'keep generating GUID until one meets the rules. Chance of looping at all is extremely low, so we don't need to worry about how to exit in those cases or indication to user that is busy
         Do
             g = Guid.NewGuid()
-        Loop While g.ToString.Contains("0000-1000-8000-00805F9B34FB")   'BT SIG reserved Base UUID as per https://www.novelbits.io/uuid-for-custom-services-and-characteristics/
+        Loop While g.ToString.EndsWith("0000-1000-8000-00805F9B34FB")   'BT SIG reserved Base UUID as per https://www.novelbits.io/uuid-for-custom-services-and-characteristics/
 
         Return g.ToString.ToUpper   'personal preference for uppercase guids as are used in #defines in C
     End Function
@@ -60,5 +63,17 @@
 
     Private Sub btnCopyText_Click(sender As Object, e As EventArgs) Handles btnCopyText.Click
         My.Computer.Clipboard.SetText(txtOutput.Text)
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'reduce user interaction by automatically generating one GUID at startup, after waiting for all painting to complete
+        'the button is now there for generating _another_ guid
+        tmrStartup.Interval = 50
+        tmrStartup.Start()
+    End Sub
+
+    Private Sub tmrStartup_Tick(sender As Object, e As EventArgs) Handles tmrStartup.Tick
+        tmrStartup.Stop() 'run once
+        btnGenerate.PerformClick()
     End Sub
 End Class

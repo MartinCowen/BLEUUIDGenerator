@@ -33,17 +33,17 @@ Partial Class Form1
         Me.btnGenerate.Name = "btnGenerate"
         Me.btnGenerate.Size = New System.Drawing.Size(125, 35)
         Me.btnGenerate.TabIndex = 0
-        Me.btnGenerate.Text = "Generate UUID"
+        Me.btnGenerate.Text = "&Generate UUID"
         Me.btnGenerate.UseVisualStyleBackColor = True
         '
         'txtOutput
         '
         Me.txtOutput.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.txtOutput.Font = New System.Drawing.Font("Lucida Console", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOutput.Location = New System.Drawing.Point(0, 54)
+        Me.txtOutput.Location = New System.Drawing.Point(0, 56)
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
-        Me.txtOutput.Size = New System.Drawing.Size(1005, 339)
+        Me.txtOutput.Size = New System.Drawing.Size(1005, 135)
         Me.txtOutput.TabIndex = 1
         '
         'btnCopyText
@@ -53,14 +53,14 @@ Partial Class Form1
         Me.btnCopyText.Name = "btnCopyText"
         Me.btnCopyText.Size = New System.Drawing.Size(125, 35)
         Me.btnCopyText.TabIndex = 2
-        Me.btnCopyText.Text = "Copy"
+        Me.btnCopyText.Text = "&Copy"
         Me.btnCopyText.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1005, 393)
+        Me.ClientSize = New System.Drawing.Size(1005, 191)
         Me.Controls.Add(Me.btnCopyText)
         Me.Controls.Add(Me.txtOutput)
         Me.Controls.Add(Me.btnGenerate)
