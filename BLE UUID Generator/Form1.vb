@@ -32,11 +32,19 @@ Public Class Form1
         'keep generating GUID until one meets the rules. Chance of looping at all is extremely low, so we don't need to worry about how to exit in those cases or indication to user that is busy
         Do
             g = Guid.NewGuid()
-        Loop While g.ToString.EndsWith("0000-1000-8000-00805F9B34FB")   'BT SIG reserved Base UUID as per https://www.novelbits.io/uuid-for-custom-services-and-characteristics/
-
+        Loop While IsUUID_BTSIG_Reserved(g.ToString)
         Return g.ToString.ToUpper   'personal preference for uppercase guids as are used in #defines in C
     End Function
+    ''' <summary>
+    ''' Checks UUID string to see if it is a BT SIG reserved type
+    ''' </summary>
+    ''' <param name="s">UUID as a string, either with dashes or without</param>
+    ''' <returns>True if reserved</returns>
+    Private Function IsUUID_BTSIG_Reserved(s As String) As Boolean
 
+        Return s.Replace("-", "").EndsWith("00001000800000805F9B34FB")  'BT SIG reserved Base UUID as per https://www.novelbits.io/uuid-for-custom-services-and-characteristics/
+
+    End Function
     ''' <summary>
     ''' Takes a GUID in format 03B80E5A-EDE8-4B33-A751-6CE34EC4C700 and produces little endian hex formatted comma separated list with containing brackets
     ''' </summary>
@@ -86,6 +94,9 @@ Public Class Form1
 
     Private Sub btnEnterUUID_Click(sender As Object, e As EventArgs) Handles btnEnterUUID.Click
         DisplayUUID(txtUUID.Text)
+        If IsUUID_BTSIG_Reserved(txtUUID.Text) Then
+            MessageBox.Show("This UUID is reserved by BT SIG!" & Environment.NewLine & "It must not be used as a Vendor Specific UUID.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
     Private Sub txtUUID_TextChanged(sender As Object, e As EventArgs) Handles txtUUID.TextChanged
@@ -95,7 +106,7 @@ Public Class Form1
     Private Sub txtUUID_KeyDown(sender As Object, e As KeyEventArgs) Handles txtUUID.KeyDown
         If e.KeyCode = Keys.Enter Then
             If Guid.TryParse(txtUUID.Text, New Guid) Then
-                DisplayUUID(txtUUID.Text)
+                btnEnterUUID.PerformClick()
             End If
         End If
     End Sub

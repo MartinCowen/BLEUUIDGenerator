@@ -28,6 +28,13 @@ BLE UUID Generator
  </summary>
  <returns>GUID string with dashes in upper case</returns>
 </member>
+<member name="M:BLE_UUID_Generator.Form1.IsUUID_BTSIG_Reserved(System.String)">
+ <summary>
+ Checks UUID string to see if it is a BT SIG reserved type
+ </summary>
+ <param name="s">UUID as a string, either with dashes or without</param>
+ <returns>True if reserved</returns>
+</member>
 <member name="M:BLE_UUID_Generator.Form1.SplitReverseGUID(System.String)">
  <summary>
  Takes a GUID in format 03B80E5A-EDE8-4B33-A751-6CE34EC4C700 and produces little endian hex formatted comma separated list with containing brackets
