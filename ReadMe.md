@@ -14,8 +14,8 @@ Use the Copy button to copy the contents of the text box to the clipboard for pa
 
 If you need another UUID, press the Generate UUID button.
 
-If you already have a UUID that you would like to format in this way (and check for collision with the reserved range), paste it into the small text box in the top middle and press return or the Enter button. If your UUID is in the BT SIGgith reserved range, a warning message box will be shown; the formatter still runs but it is up to you to heed the warning.
+If you already have a UUID that you would like to format in this way (and check for collision with the reserved range), paste it into the small text box in the top middle and press return or the Enter button. If your UUID is in the BT SIG reserved range, a warning message box will be shown; the formatter still runs but it is up to you to heed the warning.
 
 No guarantees of uniqueness can be made, this program is simply calling Microsoft's Guid.NewGuid() function [as documented.](https://docs.microsoft.com/en-us/dotnet/api/system.guid.newguid?view=netcore-3.1)
 
-The executable is a single file which runs on Windows 10 assuming the .NET Framework 4.7.2 is installed, so it does not need an installer. Source code is on GitHub.
+The [executable](https://github.com/MartinCowen/BLEUUIDGenerator/blob/master/BLE%20UUID%20Generator/bin/Release/BLE%20UUID%20Generator.exe) is a single file which runs on Windows 10 assuming the .NET Framework 4.7.2 is installed, so it does not need an installer.  
